@@ -31,11 +31,11 @@ The red color of branch name, it's because the branch is dirty and the green nam
 3. Configure the theme in your **~/.zshrc** file:
 
 ```bash
-ZSH_THEME="bullet-train"
+ZSH_THEME="monroe"
 ```
 
 ## Customization
-You can change the variables you own to just display things wich be useful for you:
+You can change the variables you own to just display things useful for you:
 
 ```bash
 MONROE_SHOW_RUBY=true
