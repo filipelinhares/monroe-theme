@@ -20,15 +20,15 @@ This project has:
 `⇡1` - 1 commit to push
 `♆1` - 1 branch to merge
 
-The red color of branch name, it's because the branch is dirty and the green name of the branch is because is clean.
+The red color of branch name it's because the branch is dirty, and the green name of the branch is because is clean.
 
 
 ## Installation
 
 #### In oh-my-zsh
-1. Download it here
+1. Download it (`git clone git@github.com:filipelinhares/monroe-theme.git`)
 2. Put the file **monroe.zsh-theme** in **~/.oh-my-zsh/themes/**
-3. Configure the theme in your **~/.zshrc** file:
+3. Configure the theme in your **~/.zshrc** file with this line:
 
 ```bash
 ZSH_THEME="monroe"
