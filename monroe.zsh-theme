@@ -131,6 +131,16 @@ function monroe_node_version() {
   prompt_segment none green "⬡ "$nvm_prompt
 }
 
+# Rails ---
+
+# TODO: check if need migration
+function is_rails_project() {
+  grep 'rails' 'Gemfile' >/dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    # is a rails project
+  fi
+}
+
 # Things happen
 
 build_prompt() {
