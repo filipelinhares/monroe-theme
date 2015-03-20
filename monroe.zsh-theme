@@ -21,7 +21,7 @@ function prompt_segment() {
 }
 
 function monroe_prompt_pc_name() {
-  echo -n "$fg[cyan]%m: "
+  echo -n "$fg[cyan]%m:"
 }
 
 function monroe_prompt_dir() {
@@ -99,7 +99,7 @@ function monroe_ruby_version() {
 # NVM ---
 
 function monroe_node_version() {
-  if [[ $BULLETTRAIN_NVM_SHOW == false ]] then
+  if [[ $MONROE_NVM_SHOW == false ]] then
     return
   fi
 
