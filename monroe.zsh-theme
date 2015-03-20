@@ -8,6 +8,7 @@ MONROE_NVM_SHOW=true
 MONROE_SHOW_UNPUSHED=true
 MONROE_SHOW_UNMERGED=true
 MONROE_SHOW_UNTRACKED=true
+MONROE_SHOW_UNPULLED=true
 
 # =================
 
@@ -31,6 +32,25 @@ function monroe_prompt_dir() {
 }
 
 # Git ----
+
+function monroe_git_unpulled() {
+  if [[ $MONROE_SHOW_UNPULLED == false ]] then
+    return
+  fi
+
+  # Async code here
+  {
+    # check if we're in a git repo
+    [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] &&
+    command git fetch &>/dev/null &&
+    # check if there is an upstream configured for this branch
+    command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
+    if [[ $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 ]]; then
+      prompt_segment nonde white "⇣"
+    fi
+    }
+  } &
+}
 
 function monroe_git_untracked_files() {
   if [[ $MONROE_SHOW_UNTRACKED == false ]] then
@@ -122,6 +142,7 @@ build_prompt() {
   monroe_git_untracked_files
   monroe_git_unpushed_files
   monroe_git_unmerged_files
+  monroe_git_unpulled
 }
 
 
