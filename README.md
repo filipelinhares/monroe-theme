@@ -37,8 +37,8 @@ ZSH_THEME="monroe"
 You can change the variables you own to just display things useful for you:
 
 ```bash
-MONROE_SHOW_RUBY=true
-MONROE_SHOW_NVM=true
+MONROE_RUBY_SHOW=true
+MONROE_NVM_SHOW=true
 MONROE_SHOW_UNPUSHED=true
 MONROE_SHOW_UNMERGED=true
 MONROE_SHOW_UNTRACKED=true
