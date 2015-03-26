@@ -7,6 +7,7 @@
 - Show the number of untracked files with ↭
 - Show the number of commits unpusheds with ⇡
 - Show the number of unmerged branchs with ♆
+- Show if has unpulled changes with ⇣ `new feature` 
 - Show the Ruby version
 - Show the Node version
 
@@ -14,11 +15,9 @@
 ![Terminal screen](./img/example-screenshot.png)
 ![Terminal screen](./img/example2-screenshot.png)
 
-This project has:
-
-`↭1` - 1 untrackef file
-`⇡1` - 1 commit to push
-`♆1` - 1 branch to merge
+`↭1` - 1 untrackef file  
+`⇡1` - 1 commit to push  
+`♆1` - 1 branch to merge  
 
 The red color of branch name it's because the branch is dirty, and the green name of the branch is because is clean.
 
@@ -43,6 +42,7 @@ MONROE_SHOW_NVM=true
 MONROE_SHOW_UNPUSHED=true
 MONROE_SHOW_UNMERGED=true
 MONROE_SHOW_UNTRACKED=true
+MONROE_SHOW_UNPULLED=true
 ```
 
 ## License
