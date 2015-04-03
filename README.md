@@ -45,5 +45,8 @@ MONROE_SHOW_UNTRACKED=true
 MONROE_SHOW_UNPULLED=true
 ```
 
+## Simple version
+You can use our [simple version](https://github.com/filipelinhares/monroe-theme/tree/simple-version) of Monroe Theme, it's more performatic.
+
 ## License
 MIT © [Filipe Linhares](http://filipelinhares.com)
