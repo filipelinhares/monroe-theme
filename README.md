@@ -4,23 +4,13 @@
 ![Terminal screen](./img/screenshot.png)
 
 ## Features
-- Show the number of untracked files with ↭
-- Show the number of commits unpusheds with ⇡
-- Show the number of unmerged branchs with ♆
-- Show if has unpulled changes with ⇣ `new feature` 
 - Show the Ruby version
 - Show the Node version
+- Show if a branch is dirty
 
 ## Example
 ![Terminal screen](./img/example-screenshot.png)
 ![Terminal screen](./img/example2-screenshot.png)
-
-`↭1` - 1 untrackef file  
-`⇡1` - 1 commit to push  
-`♆1` - 1 branch to merge  
-
-The red color of branch name it's because the branch is dirty, and the green name of the branch is because is clean.
-
 
 ## Installation
 
@@ -31,18 +21,6 @@ The red color of branch name it's because the branch is dirty, and the green nam
 
 ```bash
 ZSH_THEME="monroe"
-```
-
-## Customization
-You can change the variables you own to just display things useful for you:
-
-```bash
-MONROE_RUBY_SHOW=true
-MONROE_NVM_SHOW=true
-MONROE_SHOW_UNPUSHED=true
-MONROE_SHOW_UNMERGED=true
-MONROE_SHOW_UNTRACKED=true
-MONROE_SHOW_UNPULLED=true
 ```
 
 ## License

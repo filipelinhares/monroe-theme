@@ -5,10 +5,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
 
 MONROE_RUBY_SHOW=true
 MONROE_NVM_SHOW=true
-MONROE_SHOW_UNPUSHED=true
-MONROE_SHOW_UNMERGED=true
-MONROE_SHOW_UNTRACKED=true
-MONROE_SHOW_UNPULLED=true
 
 # =================
 
@@ -33,67 +29,17 @@ function monroe_prompt_dir() {
 
 # Git ----
 
-function monroe_git_unpulled() {
-  if [[ $MONROE_SHOW_UNPULLED == false ]] then
-    return
-  fi
-
-  # Async code here
-  {
-    # check if we're in a git repo
-    [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] &&
-    command git fetch &>/dev/null &&
-    # check if there is an upstream configured for this branch
-    command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
-    if [[ $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 ]]; then
-      prompt_segment nonde white "⇣"
-    fi
-    }
-  } &
-}
-
-function monroe_git_untracked_files() {
-  if [[ $MONROE_SHOW_UNTRACKED == false ]] then
-    return
-  fi
-
-  local untracked=`git status --porcelain 2>/dev/null| grep "^??" | wc -l`
-  if [ "$untracked" != "0" ]; then
-    prompt_segment none red "↭$untracked"
-  fi
-}
-
-function monroe_git_unpushed_files {
-  if [[ $MONROE_SHOW_UNPUSHED == false ]] then
-    return
-  fi
-
+function monroe_git_dirty() {
   # check if we're in a git repo
   [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] || return
+  # check if it's dirty
+  [[ "$PURE_GIT_UNTRACKED_DIRTY" == 0 ]] && local umode="-uno" || local umode="-unormal"
+  command test -n "$(git status --porcelain --ignore-submodules ${umode})"
 
-  if [ $(current_branch)=$(command git name-rev --name-only HEAD 2>/dev/null ) ]; then
-    local unpushed=$(git log origin/$(current_branch)..$(current_branch) --oneline &>/dev/null | wc -l)
-    local re='^[0-9]+$'
-    if [ $unpushed =~ $re ]; then
-      if [ $unpushed != "0" ]; then
-        prompt_segment none cyan "⇡$unpushed"
-      fi
-    fi
-  fi
-}
-
-function monroe_git_unmerged_files {
-  if [[ $MONROE_SHOW_UNMERGED == false ]] then
-    return
-  fi
-
-  # check if we're in a git repo
-  [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] || return
-
-  local unmerged=`expr $(git branch --no-color --no-merged master &>/dev/null | wc -l)`
-
-  if [ "$unmerged" != "0" ]; then
-    prompt_segment none cyan "♆$unmerged"
+  if [[ $? == 0 ]]; then
+    prompt_segment none red ":("
+  else
+    prompt_segment none green ":)"
   fi
 }
 
@@ -113,7 +59,7 @@ function monroe_ruby_version() {
   local ruby_prompt
   ruby_prompt=$(echo "$(ruby -e 'print RUBY_VERSION')" )
   ruby_prompt=${ruby_prompt}
-  prompt_segment none red ♦$ruby_prompt
+  prompt_segment none red "♦ "$ruby_prompt
 }
 
 # NVM ---
@@ -139,10 +85,7 @@ build_prompt() {
   monroe_node_version
   monroe_prompt_dir
   monroe_git_prompt_info
-  monroe_git_untracked_files
-  monroe_git_unpushed_files
-  monroe_git_unmerged_files
-  monroe_git_unpulled
+  monroe_git_dirty
 }
 
 
