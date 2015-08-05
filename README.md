@@ -24,11 +24,18 @@ The red color of branch name it's because the branch is dirty, and the green nam
 
 ## Installation
 
-#### In oh-my-zsh
-1. Download it (`git clone git@github.com:filipelinhares/monroe-theme.git`)
-2. Put the file **monroe.zsh-theme** in **~/.oh-my-zsh/themes/**
-3. Configure the theme in your **~/.zshrc** file with this line:
+#### wget
+```bash
+wget -O $HOME/.oh-my-zsh/themes/monroe.zsh-theme https://raw.githubusercontent.com/filipelinhares/monroe-theme/master/monroe.zsh-theme
+```
 
+#### cURL
+```bash
+curl https://raw.githubusercontent.com/filipelinhares/monroe-theme/master/monroe.zsh-theme > $HOME/.oh-my-zsh/themes/monroe.zsh-theme
+```
+
+## Configure
+In your **~/.zshrc** file with this line:
 ```bash
 ZSH_THEME="monroe"
 ```
